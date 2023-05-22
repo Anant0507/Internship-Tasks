@@ -13,9 +13,9 @@ const App = () => {
     
     <BrowserRouter>
       <div>
-        <Link to="/">Home</Link>
-        <Link to="/apple">Apple</Link>
-        <Link to="/applet">Applet</Link>
+        <Link to="/" style={{marginLeft:5}}>Home</Link> 
+        <Link to="/apple" style={{marginLeft:10}}>Apple</Link>
+        <Link to="/applet" style={{marginLeft:10}}>Applet</Link>
       </div>
       <Routes>
         <Route path="/" element={<HomePage/>}></Route>
