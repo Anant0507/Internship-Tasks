@@ -1,0 +1,17 @@
+{
+  "name": "day7_loginpage",
+  "version": "1.0.0",
+  "description": "Basic Login and Registration",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon app.js -e html,hbs,js,css"
+  },
+  "author": "Anant Patel",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "express": "^4.18.2",
+    "mongoose": "^7.2.1"
+  }
+}

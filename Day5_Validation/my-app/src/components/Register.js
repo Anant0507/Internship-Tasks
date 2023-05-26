@@ -1,24 +1,14 @@
 import {Button, TextField} from "@mui/material"
 import { MenuItem } from '@mui/material';
 import { Select } from '@mui/material';
-// import { useEffect } from "react";
+import { useEffect } from "react";
 import { Formik } from "formik"
+
 import * as Yup from "yup"
-// export const Register = () => {
-//     return(<form>
-//         <TextField label="name"/>
-//     </form>)
-// }
 export const Register = () => {
-    // const [firstname,setFirstName] = useState("Anant");
-    // const [lastname,setLastName] = useState("Patel");
-    // const [email,setEmail] = useState("anant.patel4762@gmail.com");
-    // const [password,setPassword] = useState("123");
-    // const [confirmpassword,setConfirmPassword] = useState("123");
-    // const [role,setRole] = useState();
-    // useEffect(() => {
-    //     // console.log("This is before Change:"+firstname);
-    // });
+    useEffect(() => {
+        console.log("Site is Loaded!!!");
+    });
     const initialValues = {
         firstname: "",       
         lastname: "",
@@ -28,23 +18,17 @@ export const Register = () => {
         confirmpassword: ""
     }
     const validationSchema = Yup.object().shape({
-        firstname: Yup.string().min(3, "Firstname should atleast contain 3 characters"),
-        lastname: Yup.string().min(3, "Lastname should atleast contain 3 characters"),
-        email: Yup.string().email("Please enter a valid email"),
-        password: Yup.string().min(5,"Password must contain 5 character"),
-        confirmpassword: Yup.string().oneOf([Yup.ref('password'), null],"Password must be same")
+        firstname: Yup.string().min(3, "Firstname should atleast contain 3 characters").required("Please fill First name"),
+        lastname: Yup.string().min(3, "Lastname should atleast contain 3 characters").required("Please fill Last name"),
+        email: Yup.string().email("Please enter a valid email").required("Please fill Email address"),
+        password: Yup.string().min(5,"Password must contain 5 character").required("Please enter Password"),
+        confirmpassword: Yup.string().oneOf([Yup.ref('password'), null],"Password must be same").required("Please confirm the Password")
     })
 
     const onFormSubmit = (values) => {
-        console.log(values)
+        console.log(values);
     }
-    // const { values, errors, handleBlur, handleChange, handleSubmit } = useFormik({
-    //     initialValues: initialValues,
-    //     onSubmit:onFormSubmit
-    // });
-    // console.log(myFormik);
     return(
-            // onSubmit={handleSubmit}
         <div>
             <Formik
                 initialValues={initialValues}
