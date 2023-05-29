@@ -8,8 +8,12 @@ import axios from "axios"
 import { toast } from 'react-toastify';
 import { useNavigate } from "react-router-dom"
 import authService from "../services/auth.service"
+import { useEffect } from "react"
 export const Login = () => {
     const navigate = useNavigate();
+    useEffect(() => {
+        localStorage.setItem("isLogin",false);
+    })
     const initialValues = {
         email:"",
         password:""
@@ -21,14 +25,15 @@ export const Login = () => {
     const redirectToRegister = () => {
         navigate("/register");
     }
-    const onFormSubmitLogin = (values) => {
+    const onFormSubmitLogin = async (values) => {
 
         console.log(values);
         const requestData = {
             email: values.email,
             password: values.password,
         }
-        authService.login(values).then((res) => {
+        await authService.login(values).then((res) => {
+            localStorage.setItem("isLogin",true);
             navigate("/bookstore");
             toast.success('Login Successfull', {
                 position: "top-right",
@@ -40,48 +45,8 @@ export const Login = () => {
                 progress: undefined,
                 theme: "colored",
             });
-        })
-        // axios.post("http://localhost:8000/api/login",requestData)
-        // .then((res) => 
-        // {
-        //     console.log(res);  
-        //     if(res.data.status === 401)
-        //     {
-        //         console.log(res.error);
-        //         toast.error('Invalid Login Credentials', {
-        //             position: "top-right",
-        //             autoClose: 3000,
-        //             hideProgressBar: false,
-        //             closeOnClick: true,
-        //             pauseOnHover: true,
-        //             draggable: true,
-        //             progress: undefined,
-        //             theme: "colored",
-        //             });
-        //         navigate("/Login");  
-        //     }
-        //     if(res.status === 200)
-        //     {
-        //         console.log(res.data);
-
-        //         toast.success('Successfully Registered', {
-        //             position: "top-right",
-        //             autoClose: 3000,
-        //             hideProgressBar: false,
-        //             closeOnClick: true,
-        //             pauseOnHover: true,
-        //             draggable: true,
-        //             progress: undefined,
-        //             theme: "colored",
-        //         });
-        //         navigate("/BookStore");
-        //     }
-        // })
-        // .catch((res) => {
-            
-        // })
-        
-        
+            }
+        )  
     }
     return(
         <div 

@@ -36,7 +36,7 @@ export const Register = () => {
         confirmpassword: Yup.string().oneOf([Yup.ref('password'), null],"Password must be same").required("Please confirm the Password")
     })
 
-    const onFormSubmit = (values) => {
+    const onFormSubmit = async (values) => {
 
         // console.log(values);
         var roleId = 0
@@ -75,25 +75,25 @@ export const Register = () => {
         // });
 
         //Tatvasoft API
-        // authService.create(requestData).then((res) => {
-        //     navigate("/login");
-        //     toast.success("Successfully Registered");
-        // });
+        await authService.create(requestData).then((res) => {
+            navigate("/login");
+            toast.success("Successfully Registered");
+        });
 
         //Localhost:8000/api
-        authService.create(values).then((res) => {
-            navigate("/login");
-            toast.success('Successfully Registered', {
-                position: "top-right",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-            });
-        });
+        // authService.create(values).then((res) => {
+        //     navigate("/login");
+        //     toast.success('Successfully Registered', {
+        //         position: "top-right",
+        //         autoClose: 3000,
+        //         hideProgressBar: false,
+        //         closeOnClick: true,
+        //         pauseOnHover: true,
+        //         draggable: true,
+        //         progress: undefined,
+        //         theme: "colored",
+        //     });
+        // });
     }
     return(
         <div>

@@ -4,11 +4,11 @@ import { toast } from "react-toastify";
 const request = axios.create({
   //  baseURL: "https://web1.anasource.com/BookStore/api/BookStore/", // url = base url + request url
   //   baseURL: "http://localhost:5000/",
-  // baseURL: "https://book-e-sell-node-api.vercel.app/",
+  baseURL: "https://book-e-sell-node-api.vercel.app/",
   // baseURL: "https://helperland1.azurewebsites.net/",
   // baseURL: "https://helperland1.azurewebsites.net/",
   //  baseURL: "http://192.168.1.20/",
-  baseURL: "http://localhost:8000",
+  // baseURL: "http://localhost:8000",
   timeout: 12400000,
   responseType: "json",
 });
@@ -20,7 +20,7 @@ let conflictRequest = "";
 request.interceptors.request.use(
   async (config) => {
     if (config.headers) {
-      config.headers["Content-Type"] = "application/json";
+      config.headers["Content-Type"] = "application/json"; 
     }
 
     // if (config.headers["isDisableLoader"] !== true) {
@@ -43,7 +43,7 @@ request.interceptors.response.use(
     console.log("responseeee,", response);
     removeRequest(response.config.url);
     if (data?.code && data?.code !== 200) {
-      toast.error(response.data.error ?? "Somthing went wrong. Please try again!");
+      toast.error(response.error ?? "Somthing went wrong. Please try again!");
       return Promise.reject(new Error(data?.error || "Error"));
     } else {
       return Promise.resolve(response.data.result);

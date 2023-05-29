@@ -9,8 +9,18 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { BookStore } from './components/BookStore';
+import { useEffect, useState } from 'react';
+import { MainNavigation } from './components/MainNavigation';
 const App = () => {
+  // const [isLogin,setIsLogin] = useState(localStorage.getItem("isLogin"));
+  const isLogin = localStorage.getItem("isLogin");
+  useEffect(() => {
+    // console.log(isLogin);
+    localStorage.setItem("isLogin",false);
+    console.log(localStorage.getItem("isLogin"));
+  });
   return (
+    
     <div>
     <BrowserRouter>
         <div style={{
@@ -44,13 +54,13 @@ const App = () => {
             }}>Login</Link>
           </div>
         <ToastContainer />
-        <Routes>
+        <MainNavigation/>
+        {/* <Routes>
           <Route path="/" element={<Home/>}></Route>
           <Route path="/register" element={<Register/>}></Route>
           <Route path="/login" element={<Login/>}></Route>
-          <Route path="/bookstore" element={<BookStore/>}></Route>
-
-        </Routes>
+          <Route path="/bookstore" element={isLogin? <BookStore/> : <Login/>}></Route>
+        </Routes> */}
       </BrowserRouter>
       {/* <form action="http://localhost:8000/posts" method="post">
         <input type="text" name="name"></input>
