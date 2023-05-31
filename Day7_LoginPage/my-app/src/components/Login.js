@@ -11,9 +11,9 @@ import authService from "../services/auth.service"
 import { useEffect } from "react"
 export const Login = () => {
     const navigate = useNavigate();
-    useEffect(() => {
-        localStorage.setItem("isLogin",false);
-    })
+    // useEffect(() => {
+    //     localStorage.setItem("isLogin",false);
+    // })
     const initialValues = {
         email:"",
         password:""
@@ -33,7 +33,7 @@ export const Login = () => {
             password: values.password,
         }
         await authService.login(values).then((res) => {
-            localStorage.setItem("isLogin",true);
+            // localStorage.setItem("isLogin",true);
             navigate("/bookstore");
             toast.success('Login Successfull', {
                 position: "top-right",

@@ -5,7 +5,7 @@ export const RoutePaths = {
     Category:"/category",
     User:"/user",
     UpdateProfile:"/update-profile",
-    Book:"/book"
+    Book:"/bookdetails"
     
 }
 
